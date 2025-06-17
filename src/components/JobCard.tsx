@@ -1,3 +1,5 @@
+import ApplicationsModal from "./ApplicationsModal";
+
 type Job = {
     application_deadline: string;
     company: string;
@@ -19,8 +21,11 @@ type Job = {
 
 type JobCardProps = {
     job: Job;
+    modal: boolean;
+    setModal: any
 };
-const JobCard = ({ job }: JobCardProps) => {
+
+const JobCard = ({ job, modal, setModal }: JobCardProps) => {
     return (
         <div className="bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
             <h2 className="text-xl font-semibold mb-2">{job.title}</h2>
@@ -29,10 +34,12 @@ const JobCard = ({ job }: JobCardProps) => {
             <p className="text-gray-600 mb-4">Salary: ${job.salary_from} - ${job.salary_to}</p>
             <p className="text-gray-600 mb-4">Posted on: {job.created_at}</p>
             <p className="text-gray-600 mb-4">
-               {job.description}
+                {job.description}
             </p>
             <div className="flex justify-between items-center">
-                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+
+                {modal && <ApplicationsModal />}
+                <button onClick={() => setModal(!modal)} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
                     Apply Now
                 </button>
                 <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition">
