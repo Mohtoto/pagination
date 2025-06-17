@@ -26,6 +26,9 @@ type JobCardProps = {
 };
 
 const JobCard = ({ job, modal, setModal }: JobCardProps) => {
+    const appliedJobs = JSON.parse(localStorage.getItem('appliedJobs') || '[]');
+    const isApplied = appliedJobs.includes(job.id);
+
     return (
         <div className="bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
             <h2 className="text-xl font-semibold mb-2">{job.title}</h2>
@@ -38,13 +41,18 @@ const JobCard = ({ job, modal, setModal }: JobCardProps) => {
             </p>
             <div className="flex justify-between items-center">
 
-                {modal && <ApplicationsModal />}
-                <button onClick={() => setModal(!modal)} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-                    Apply Now
+                {modal && <ApplicationsModal modal={modal} setModal={setModal} id={job.id} />}
+                <button onClick={() => setModal(!modal)} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" disabled={isApplied}>
+                    {isApplied ? "Applied" : "Apply Now"}
                 </button>
                 <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition">
                     Save Job
                 </button>
+                {isApplied && (
+                    <span className="ml-2 px-2 py-1 bg-green-100 text-red-800 text-xs rounded-full">
+                        Applied
+                    </span>
+                )}
             </div>
         </div>
     )
