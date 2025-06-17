@@ -1,23 +1,28 @@
-'use client';
-import axios from "axios";
 import { useEffect, useState } from "react";
+import JobCard from "./components/JobCard";
+import axios from "axios";
 
-const fetchPosts = async () => {
-  try {
-    const response = await axios.get('https://jsonfakery.com/jobs/paginated');
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-    return [];
-  }
-};
+
 
 const App = () => {
+  const [jobs, setJobs] = useState([]);
 
+  useEffect(() => {
+    const fetchJobs = async () => {
+      const { data } = await axios.get("https://jsonfakery.com/jobs/paginated");
+      setJobs(data.data);
+    };
+    fetchJobs();
+  }, []);
+
+  console.log(jobs);
 
   return (
-    <div className='text-lg text-black p-4'>
-      heelo
+    <div className='flex flex-col items-center justify-center min-h-screen bg-zinc-900'>
+      <h1 className="text-3xl font-bold text-white mb-8">Job Listings</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {jobs.map((job) => <JobCard job={job} />)}
+      </div>
     </div>
   );
 };
