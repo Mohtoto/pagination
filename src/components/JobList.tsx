@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 type Job = {
     application_deadline: string;
     company: string;
@@ -19,8 +21,12 @@ type Job = {
 
 type JobCardProps = {
     job: Job;
+    setModal: (modal: boolean) => void 
+    modal: boolean;
 };
-const JobCard = ({ job }: JobCardProps) => {
+const JobList = ({ job , setModal , modal }: JobCardProps) => {
+
+
     return (
         <div className="bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
             <h2 className="text-xl font-semibold mb-2">{job.title}</h2>
@@ -32,10 +38,12 @@ const JobCard = ({ job }: JobCardProps) => {
                {job.description}
             </p>
             <div className="flex justify-between items-center">
+                {/* add application modal component */}
                 <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
                     Apply Now
                 </button>
-                <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition">
+            
+                <button onClick={() => setModal(!modal)} className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition">
                     Save Job
                 </button>
             </div>
@@ -43,4 +51,4 @@ const JobCard = ({ job }: JobCardProps) => {
     )
 }
 
-export default JobCard
+export default JobList
