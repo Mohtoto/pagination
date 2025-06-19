@@ -11,7 +11,7 @@ const App = () => {
   const [selectedJobId, setSelectedJobId] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(8);
+  const [postPerPage] = useState(6);
 
 
   // Load jobs either from localStorage or API
@@ -38,7 +38,7 @@ const App = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-900 relative">
       <h1 className="text-7xl font-bold text-white mb-8 font-mono">Job Listings</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {currentJobs.map((job) => (
           <JobList
             job={job}
