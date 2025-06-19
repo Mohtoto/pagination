@@ -1,4 +1,4 @@
-import { useState } from "react";
+import ApplicationsModal from "./ApplicationsModal";
 
 type Job = {
     application_deadline: string;
@@ -21,11 +21,13 @@ type Job = {
 
 type JobCardProps = {
     job: Job;
-    setModal: (modal: boolean) => void 
     modal: boolean;
+    setModal: any
 };
-const JobList = ({ job , setModal , modal }: JobCardProps) => {
 
+const JobCard = ({ job, modal, setModal }: JobCardProps) => {
+    const appliedJobs = JSON.parse(localStorage.getItem('appliedJobs') || '[]');
+    const isApplied = appliedJobs.includes(job.id);
 
     return (
         <div className="bg-white shadow-md rounded-lg p-6 max-w-sm mx-auto">
@@ -35,17 +37,23 @@ const JobList = ({ job , setModal , modal }: JobCardProps) => {
             <p className="text-gray-600 mb-4">Salary: ${job.salary_from} - ${job.salary_to}</p>
             <p className="text-gray-600 mb-4">Posted on: {job.created_at}</p>
             <p className="text-gray-600 mb-4">
-               {job.description}
+                {job.description}
             </p>
             <div className="flex justify-between items-center">
-                {/* add application modal component */}
-                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-                    Apply Now
+
+                {modal && <ApplicationsModal modal={modal} setModal={setModal} id={job.id} />}
+                <button onClick={() => setModal(!modal)} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition" disabled={isApplied}>
+                    {isApplied ? "Applied" : "Apply Now"}
                 </button>
             
                 <button onClick={() => setModal(!modal)} className="bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 transition">
                     Save Job
                 </button>
+                {isApplied && (
+                    <span className="ml-2 px-2 py-1 bg-green-100 text-red-800 text-xs rounded-full">
+                        Applied
+                    </span>
+                )}
             </div>
         </div>
     )
