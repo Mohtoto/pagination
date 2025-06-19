@@ -1,54 +1,61 @@
-# React + TypeScript + Vite
+# 💼 JobBoard UI – React Job Application Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive job listing application built with **React**, **TypeScript**, **Tailwind CSS**, and **React Hook Form**. Users can browse job cards, view detailed job descriptions, and submit applications via a modal form. Application status is stored in 
+`localStorage`.
+## 🛠 Setup Instructions
 
-Currently, two official plugins are available:
+Follow the steps below to run the project locally:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Clone the repository**
 
-## Expanding the ESLint configuration
+   ```bash
+   git clone https://github.com/Mohtoto/pagination
+   cd pagination
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. **Install dependencies**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+    ```bash
+    npm install
+   ```
+3. **Start the development server**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+   ```bash
+   npm run dev
+   ```
+## 🚀 Features
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- 🔍 Job Listings Grid UI (like Dribbble/LinkedIn)
+- 📄 View Job Details in a Modal
+- 📝 Submit Job Applications with Validation
+- 🌐 Data fetched via `axios` from public job API
+- 💅 Styled with Tailwind CSS
+
+---
+
+
+## 🛠 Tech Stack
+
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **React Hook Form**
+- **Yup** (form validation)
+- **Axios** (data fetching)
+- **localStorage** (simple state persistence)
+
+---
+
+
+## 🧩 Folder Structure
+
+```bash
+src/
+│
+├── components/
+│   ├── JobList.tsx           # Job cards
+│   ├── JobDetails.tsx        # Detailed modal for job
+│   └── ApplicationsModal.tsx # Application form modal
+│
+├── App.tsx                   # Main UI container
+└── index.tsx                 # Entry point
