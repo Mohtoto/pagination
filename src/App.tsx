@@ -11,7 +11,7 @@ const App = () => {
   const [selectedJobId, setSelectedJobId] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage, setPostPerPage] = useState(8);
+  const [postPerPage] = useState(8);
 
 
   // Load jobs either from localStorage or API
