@@ -2,7 +2,7 @@ import ApplicationsModal from "./ApplicationsModal";
 import type { JobCardProps } from "../types/types";
 
 
-const JobList = ({ job, modal, setModal, setJobDetails, setSelectedJobId }: JobCardProps) => {
+const JobList = ({ job, modal, setModal, setJobDetails, setSelectedJobId ,setThankModal }: JobCardProps) => {
     const appliedJobs: string[] = JSON.parse(localStorage.getItem("appliedJobs") || "[]");
     const isApplied = appliedJobs.includes(job.id);
 
@@ -58,7 +58,7 @@ const JobList = ({ job, modal, setModal, setJobDetails, setSelectedJobId }: JobC
                 </button>
             </div>
 
-            {modal && <ApplicationsModal setModal={setModal} id={job.id} />}
+            {modal && <ApplicationsModal setModal={setModal} id={job.id} setThankModal={setThankModal} />}
         </div>
     );
 };

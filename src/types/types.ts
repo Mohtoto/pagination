@@ -24,5 +24,6 @@ export type JobCardProps = {
     jobDetails: boolean;
     setJobDetails: (val: boolean) => void;
     setSelectedJobId: (id: string) => void;
+    setThankModal: (val: boolean) => void;
 };
 
